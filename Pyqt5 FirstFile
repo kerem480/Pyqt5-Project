@@ -1,0 +1,116 @@
+#FirstScreen
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+
+class Ui_MainWindows(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(504, 486)
+        MainWindow.setStyleSheet("\n"
+"    background-color:rgb(115, 115, 115)")
+        MainWindow.setToolButtonStyle(QtCore.Qt.ToolButtonTextOnly)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setEnabled(True)
+        self.centralwidget.setObjectName("centralwidget")
+        self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(180, 100, 181, 149))
+        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.label = QtWidgets.QLabel(self.verticalLayoutWidget)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label.setFont(font)
+        self.label.setObjectName("label")
+        self.verticalLayout.addWidget(self.label)
+        self.Username2 = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.Username2.setObjectName("Username2")
+        self.verticalLayout.addWidget(self.Username2)
+        self.label_2 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label_2.setFont(font)
+        self.label_2.setObjectName("label_2")
+        self.verticalLayout.addWidget(self.label_2)
+        self.Password2 = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.Password2.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.Password2.setObjectName("Password2")
+        self.verticalLayout.addWidget(self.Password2)
+        self.label_3 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label_3.setFont(font)
+        self.label_3.setObjectName("label_3")
+        self.verticalLayout.addWidget(self.label_3)
+        self.Confirmpass = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.Confirmpass.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.Confirmpass.setObjectName("Confirmpass")
+        self.verticalLayout.addWidget(self.Confirmpass)
+        self.verticalLayoutWidget_2 = QtWidgets.QWidget(self.centralwidget)
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(200, 260, 126, 64))
+        self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.Confirmbutt = QtWidgets.QToolButton(self.verticalLayoutWidget_2)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.Confirmbutt.setFont(font)
+        self.Confirmbutt.setObjectName("Confirmbutt")
+        self.verticalLayout_2.addWidget(self.Confirmbutt)
+        self.toolButton = QtWidgets.QToolButton(self.verticalLayoutWidget_2)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.toolButton.setFont(font)
+        self.toolButton.setObjectName("toolButton")
+        self.verticalLayout_2.addWidget(self.toolButton)
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 504, 21))
+        self.menubar.setObjectName("menubar")
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+        self.toolBar = QtWidgets.QToolBar(MainWindow)
+        self.toolBar.setObjectName("toolBar")
+        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar)
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.Confirmbutt.clicked.connect(self.createFunction)
+
+
+
+    def createFunction(self):
+        self.Username2=self.Username2.text()
+        if self.Password2.text()==self.Confirmpass.text():
+            self.Password2=self.Password2.text()
+            print("Hesap Oluşturuldu!!!" ,"Kullanıcı Adınız: ",self.Username2,"Şifreniz: ",self.Password2)
+        else:
+            print("Lütfen Şifrenizi Doğru Giriniz")
+
+
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.label.setText(_translate("MainWindow", "Kullanıcı Adı"))
+        self.label_2.setText(_translate("MainWindow", "Şifre"))
+        self.label_3.setText(_translate("MainWindow", "Şifre Onayla"))
+        self.Confirmbutt.setText(_translate("MainWindow", "Hesabı Oluştur"))
+        self.toolButton.setText(_translate("MainWindow", "Giriş"))
+        self.toolBar.setWindowTitle(_translate("MainWindow", "toolBar"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindows()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
