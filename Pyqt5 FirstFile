@@ -1,0 +1,109 @@
+#FirstScreen
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+from SecondScreen import Ui_MainWindows
+
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(552, 490)
+        MainWindow.setStyleSheet("\n"
+"    background-color:rgb(115, 115, 115)")
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setEnabled(True)
+        self.centralwidget.setObjectName("centralwidget")
+        self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(190, 90, 181, 131))
+        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.label = QtWidgets.QLabel(self.verticalLayoutWidget)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label.setFont(font)
+        self.label.setObjectName("label")
+        self.verticalLayout.addWidget(self.label)
+        self.Username = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.Username.setObjectName("Username")
+        self.verticalLayout.addWidget(self.Username)
+        self.label_2 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label_2.setFont(font)
+        self.label_2.setObjectName("label_2")
+        self.verticalLayout.addWidget(self.label_2)
+        self.Password = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.Password.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.Password.setObjectName("Password")
+        self.verticalLayout.addWidget(self.Password)
+        self.verticalLayoutWidget_2 = QtWidgets.QWidget(self.centralwidget)
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(190, 240, 181, 91))
+        self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.login_button = QtWidgets.QToolButton(self.verticalLayoutWidget_2)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.login_button.setFont(font)
+        self.login_button.setObjectName("login_button")
+        self.verticalLayout_2.addWidget(self.login_button)
+        self.NewAccount = QtWidgets.QToolButton(self.verticalLayoutWidget_2)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.NewAccount.setFont(font)
+        self.NewAccount.setObjectName("NewAccount")
+        self.verticalLayout_2.addWidget(self.NewAccount)
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 552, 21))
+        self.menubar.setObjectName("menubar")
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+        self.toolBar = QtWidgets.QToolBar(MainWindow)
+        self.toolBar.setObjectName("toolBar")
+        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar)
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.NewAccount.clicked.connect(self.secondwin)
+        self.login_button.clicked.connect(self.firstwin)
+
+
+    def firstwin(self):
+        self.Username=self.Username.text()
+        self.Password=self.Password.text()
+        if self.Username != "kerem" or self.Password != "1234":
+            print("Kullanıcı Adınız veya Şifreniz Yanlış Lütfen Emin Olunuz")
+        else:
+            print("Giriş Başarılı!!!")
+    def secondwin(self):
+        self.MainWindow = QtWidgets.QMainWindow()
+        self.ui = Ui_MainWindows()
+        self.ui.setupUi(self.MainWindow)
+        self.MainWindow.show()
+        MainWindow.hide()
+
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.label.setText(_translate("MainWindow", "Kullanıcı Adı"))
+        self.label_2.setText(_translate("MainWindow", "Şifre"))
+        self.login_button.setText(_translate("MainWindow", "Giriş"))
+        self.NewAccount.setText(_translate("MainWindow", "Yeni Hesap Oluştur"))
+        self.toolBar.setWindowTitle(_translate("MainWindow", "toolBar"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
